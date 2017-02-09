@@ -1,0 +1,5 @@
+
+
+phenotype_data_full_path: ../data/spreadsheets/phenotype_data.tsv
+threshold: 10
+results_directory: ./run_dir/results
