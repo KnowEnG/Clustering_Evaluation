@@ -7,8 +7,8 @@ There are two evaluation methods:
 
 | **Method**                                      | **Trait Type**                          |
 | ------------------------------------------------ | ------------------------------------- |
-| one-way ANOVA                                | Continuous                                | 
-| one-way chi square test                                     | Categorical          |
+| one-way ANOVA(f_oneway)                               | Continuous                                | 
+| one-way chi square test(chisquare)                                     | Categorical          |
 
 
 * * * 
@@ -102,3 +102,23 @@ __***Follow steps 1-3 above then do the following:***__
 * * * 
 ## Description of "run_parameters" file
 * * * 
+
+| **Key**                   | **Value** | **Comments** |
+| ------------------------- | --------- | ------------ |
+| phenotype_data_full_path | directory+phenotype_data_name| Path and file name of user supplied phenotype data |
+| results_directory | directory | Directory to save the output files |
+| threshold | 10 | Maximum number of traits for categorical phenotype |
+
+phenotype_data_name = phenotype_data.tsv
+
+* * * 
+## Description of Output files saved in results directory
+* * * 
+
+* The clustering evaluation output file has the name **clustering_evaluation_result_{timestamp}.tsv**.</br>
+
+ |  |**Trait_length_after_dropna**|**measure**|**chi/fval**|**pval**|
+ | :--------------------: |:--------------------:|:--------------------:|:--------------------:|:--------------------:|
+ | **sample 1**|int(more than threshold)|f_oneway|float|float|
+ |...|...|...|...|...|
+ | **sample m**| int(less than threshold)|chisquare|float|float|
