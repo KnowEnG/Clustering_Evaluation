@@ -31,17 +31,17 @@ def run_post_processing_phenotype_clustering_data(run_parameters):
     for column in cluster_phenotype_df:
         if(column == 'Cluster_ID'):
             continue
-        cur_df = cluster_phenotype_df[['Cluster_ID', column]].dropna(axis=0)
-        num_uniq_value = len(cur_df[column].unique())
+        current_df = cluster_phenotype_df[['Cluster_ID', column]].dropna(axis=0)
+        num_uniq_value = len(current_df[column].unique())
         if num_uniq_value == 1:
             continue
-        if cur_df[column].dtype == object and num_uniq_value >= run_parameters["threshold"]:
+        if current_df[column].dtype == object and num_uniq_value >= run_parameters["threshold"]:
             continue
         if num_uniq_value > run_parameters["threshold"]:
             classification = ColumnType.CONTINUOUS
         else:
             classification = ColumnType.CATEGORICAL
-        output_dict[classification].append(cur_df)
+        output_dict[classification].append(current_df)
 
     return output_dict
 
