@@ -49,15 +49,16 @@ def run_post_processing_phenotype_clustering_data(cluster_phenotype_df, run_para
         if (column == 'Cluster_ID'):
             continue
         cur_df = cluster_phenotype_df[['Cluster_ID', column]].dropna(axis=0)
-        cur_df_lowercase = cur_df.apply(lambda x: x.astype(str).str.lower())
-        num_uniq_value = len(cur_df_lowercase[column].unique())
-        if cur_df_lowercase[column].dtype == object and num_uniq_value > run_parameters["threshold"]:
-            continue
-        if num_uniq_value > run_parameters["threshold"]:
-            classification = ColumnType.CONTINUOUS
-        else:
-            classification = ColumnType.CATEGORICAL
-        output_dict[classification].append(cur_df_lowercase)
+        if not cur_df.empty:
+            cur_df_lowercase = cur_df.apply(lambda x: x.astype(str).str.lower())
+            num_uniq_value = len(cur_df_lowercase[column].unique())
+            if cur_df_lowercase[column].dtype == object and num_uniq_value > run_parameters["threshold"]:
+                continue
+            if num_uniq_value > run_parameters["threshold"]:
+                classification = ColumnType.CONTINUOUS
+            else:
+                classification = ColumnType.CATEGORICAL
+            output_dict[classification].append(cur_df_lowercase)
     return output_dict
 
 
@@ -141,4 +142,4 @@ def clustering_evaluation(run_parameters):
     file_name = kn.create_timestamped_filename("clustering_evaluation_result", "tsv")
     file_path = os.path.join(run_parameters["results_directory"], file_name)
     result_df.T.to_csv(file_path, header=True, index=True, sep='\t', na_rep='NA')
-    
+
