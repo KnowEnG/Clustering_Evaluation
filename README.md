@@ -117,8 +117,8 @@ phenotype_data_name = phenotype_data.tsv
 
 * The clustering evaluation output file has the name **clustering_evaluation_result_{timestamp}.tsv**.</br>
 
- |  |**Trait_length_after_dropna**|**measure**|**chi/fval**|**pval**|
- | :--------------------: |:--------------------:|:--------------------:|:--------------------:|:--------------------:|
- | **sample 1**|int(more than threshold)|f_oneway|float|float|
- |...|...|...|...|...|
- | **sample m**| int(less than threshold)|chisquare|float|float|
+ |  |**Measure**|**Trait_length_after_dropna**| **Sample_number_after_dropna**|**chi/fval**|**pval**|
+ | :--------------------: |:--------------------:|:--------------------:|:--------:|:-------:|:--------------------:|
+ | **sample 1**|f_oneway|int(more than threshold)|int|float|float|
+ |...|...|...|...|...|...|
+ | **sample m**|chisquare|int(less than threshold)|int|float|float|
