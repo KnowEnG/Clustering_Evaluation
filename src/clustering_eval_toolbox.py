@@ -50,7 +50,10 @@ def run_post_processing_phenotype_clustering_data(cluster_phenotype_df, run_para
             continue
         cur_df = cluster_phenotype_df[['Cluster_ID', column]].dropna(axis=0)
         if not cur_df.empty:
-            cur_df_lowercase = cur_df.apply(lambda x: x.astype(str).str.lower())
+            if cur_df[column].dtype == object:
+                cur_df_lowercase = cur_df.apply(lambda x: x.astype(str).str.lower())
+            else:
+                cur_df_lowercase = cur_df
             num_uniq_value = len(cur_df_lowercase[column].unique())
             if cur_df_lowercase[column].dtype == object and num_uniq_value > run_parameters["threshold"]:
                 continue
