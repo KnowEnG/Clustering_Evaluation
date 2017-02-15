@@ -51,9 +51,13 @@ def run_post_processing_phenotype_clustering_data(cluster_phenotype_df, run_para
         cur_df = cluster_phenotype_df[['Cluster_ID', column]].dropna(axis=0)
         cur_df_lowercase = cur_df.apply(lambda x: x.astype(str).str.lower())
         num_uniq_value = len(cur_df_lowercase[column].unique())
+        print(cur_df_lowercase[column].unique())
+        if num_uniq_value == 1:
+            continue
         if cur_df_lowercase[column].dtype == object and num_uniq_value > run_parameters["threshold"]:
             continue
         if num_uniq_value > run_parameters["threshold"]:
+            print('hi')
             classification = ColumnType.CONTINUOUS
         else:
             classification = ColumnType.CATEGORICAL
