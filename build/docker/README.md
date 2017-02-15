@@ -1,10 +1,10 @@
-# Building The Clustering Evaluationn Pipeline Docker Image
-The Dockefile in this directory contains all the commands, in order, needed to build the **Clustering Evaluatione** docker image.
+# Building The Clustering Evaluation Pipeline Docker Image
+The Dockefile in this directory contains all the commands, in order, needed to build the **Clustering Evaluation** docker image.
 
 
-* Run the "make" command to build the **Clustering Evaluatione** docker image (output: docker image called "clustering_evaluation" and a tag with today's date and time):
+* Run the "make" command to build the **Clustering Evaluation** docker image (output: docker image called "clustering_evaluation" and a tag with today's date and time):
 ```
-    make build_docker_image
+    make build_docker_image 
 ```
 
 * Login to docker hub. When prompted, enter your password and press enter:
