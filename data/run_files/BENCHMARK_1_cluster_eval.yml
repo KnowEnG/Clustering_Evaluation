@@ -1,5 +1,6 @@
 
 
-phenotype_data_full_path: ../data/spreadsheets/phenotype_data.tsv
-threshold: 10
+phenotype_data_full_path: ../data/spreadsheets/UCEC_phenotype.txt
+cluster_mapping_full_path: ../data/spreadsheets/samples_label_by_cluster.tsv
 results_directory: ./run_dir/results
+threshold: 10

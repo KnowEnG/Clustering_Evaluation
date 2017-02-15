@@ -106,19 +106,20 @@ __***Follow steps 1-3 above then do the following:***__
 | **Key**                   | **Value** | **Comments** |
 | ------------------------- | --------- | ------------ |
 | phenotype_data_full_path | directory+phenotype_data_name| Path and file name of user supplied phenotype data |
+|cluster_mapping_full_path| directory+cluster_mapping_data_name|  Path and file name of sample labels by cluster|
 | results_directory | directory | Directory to save the output files |
 | threshold | 10 | Maximum number of traits for categorical phenotype |
 
-phenotype_data_name = phenotype_data.tsv
-
+phenotype_data_name = UCEC_phenotype.txt</br>
+cluster_mapping_data_name = samples_label_by_cluster.tsv
 * * * 
 ## Description of Output files saved in results directory
 * * * 
 
 * The clustering evaluation output file has the name **clustering_evaluation_result_{timestamp}.tsv**.</br>
 
- |  |**Trait_length_after_dropna**|**measure**|**chi/fval**|**pval**|
- | :--------------------: |:--------------------:|:--------------------:|:--------------------:|:--------------------:|
- | **sample 1**|int(more than threshold)|f_oneway|float|float|
- |...|...|...|...|...|
- | **sample m**| int(less than threshold)|chisquare|float|float|
+ |  |**Measure**|**Trait_length_after_dropna**| **Sample_number_after_dropna**|**chi/fval**|**pval**|
+ | :--------------------: |:--------------------:|:--------------------:|:--------:|:-------:|:--------------------:|
+ | **sample 1**|f_oneway|int(more than threshold)|int|float|float|
+ |...|...|...|...|...|...|
+ | **sample m**|chisquare|int(less than threshold)|int|float|float|
