@@ -50,7 +50,7 @@ cd test
 make env_setup
 ```
 
-###6. Select and run a gene set characterization option:
+###6. Select and run a clustering evaluation option:
  
  * Run clustering evaluation</br>
   ```
