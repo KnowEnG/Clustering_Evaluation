@@ -32,11 +32,12 @@ def combine_phenotype_data_and_clustering(run_parameters):
     return phenotype_df
 
 
-def run_post_processing_phenotype_clustering_data(cluster_phenotype_df, run_parameters):
+def run_post_processing_phenotype_clustering_data(cluster_phenotype_df, threshold):
     """This is the clean up function of phenotype data with nans removed.
 
     Parameters:
         cluster_phenotype_df: phenotype dataframe with the first column as sample clusters.
+        threshold: threshold to determine which phenotype to remove.
     Returns:
         output_dict: dictionary with keys to be categories of phenotype data and values
         to be a list of related dataframes.
@@ -58,9 +59,9 @@ def run_post_processing_phenotype_clustering_data(cluster_phenotype_df, run_para
             num_uniq_value = len(cur_df_lowercase[column].unique())
             if num_uniq_value == 1:
                 continue
-            if cur_df_lowercase[column].dtype == object and num_uniq_value > run_parameters["threshold"]:
+            if cur_df_lowercase[column].dtype == object and num_uniq_value > threshold:
                 continue
-            if num_uniq_value > run_parameters["threshold"]:
+            if num_uniq_value > threshold:
                 classification = ColumnType.CONTINUOUS
             else:
                 classification = ColumnType.CATEGORICAL
@@ -125,7 +126,7 @@ def clustering_evaluation(run_parameters):
     Save the results to tsv file.
     """
     cluster_phenotype_df = combine_phenotype_data_and_clustering(run_parameters)
-    output_dict = run_post_processing_phenotype_clustering_data(cluster_phenotype_df, run_parameters)
+    output_dict = run_post_processing_phenotype_clustering_data(cluster_phenotype_df, run_parameters['threshold'])
 
     result_df = pd.DataFrame(
         index=['Measure', 'Trait_length_after_dropna', 'Sample_number_after_dropna', 'chi/fval', 'pval'])
